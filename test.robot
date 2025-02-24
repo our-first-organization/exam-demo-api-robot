@@ -2,8 +2,13 @@
 Library    RequestsLibrary
 
 *** Test Cases ***
-Test Plus Endpoint
-    [Documentation]    Test the /plus endpoint with 5 and 6
-    ${response}    GET    http://localhost:8081/plus/5/6
+Test prime_true Endpoint
+    [Documentation]    Test the /is_prime
+    ${response}    GET    http://localhost:8081/is_prime/11
     Should Be Equal As Strings    ${response.status_code}    200
-    Should Be Equal As Strings    ${response.text}    11
+    Should Be Equal As Strings    ${response.text}    true
+
+Test prime_false Endpoint
+    ${response}    GET    http://localhost:8081/is_prime/12
+    Should Be Equal As Strings    ${response.status_code}    200
+    Should Be Equal As Strings    ${response.text}    false
